@@ -34,5 +34,6 @@ model3nl <- lm(PTS ~ SRS + SOS + SH, data=all_season_data_nl)
 model4nl <- lm(PTS ~ GF + GA + SH + SHA, data=all_season_data_nl)
 model5nl <- lm(PTS ~ GF + GA + AvAge + SH + SHA, data=all_season_data_nl)
 
+modelint <- lm(PTS ~ GF + GA + S*SA, data=all_season_data)
 save(model2,model4,model5,model6,model7,model8,model3nl,
-     model4nl,model5nl,file="Data/models.Rdata")
+     model4nl,model5nl,modelint,file="Data/models.Rdata")
