@@ -1,0 +1,95 @@
+\documentclass{beamer}
+
+\usepackage{slides}
+\usepackage{graphicx}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\title{Predicting points in the NHL}
+\author{ Nathan Esau, Fernando Villasenor and Steve Kane}
+\date{December 1, 2015}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+
+\color{black}{
+\tableofcontents}
+\end{frame}
+
+\begin{frame}{Objectives}
+
+\section{Background}
+
+\begin{enumerate}
+\item Determine start, peak and end of winter season
+\item Determine how much snow is present at different points in year
+\item Determine trends and odd behaviors in data
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Data}
+
+\section{Data}
+
+{\small
+\begin{itemize}
+\item Scraped from \url{hockey-reference.com}
+\begin{itemize}
+\item Figure out which URLs to parse \\ \vspace{2mm}
+\item[] {\footnotesize\url{http://www.hockey-reference.com/leagues/NHL_2014.html}}
+\item[] {\footnotesize\url{http://www.hockey-reference.com/leagues/NHL_2015.html}}
+\item[] \qquad $\vdots$ \\ \vspace{2mm}
+\item In R, can use \texttt{XML::readHTMLTable(URL)}
+\item Deal with data types (convert to \texttt{numeric}, \texttt{factor}, etc)
+\item Merge each \texttt{data.frame} and keep common columns
+\end{itemize}
+\item 2007--2008 season to 2014--2015 season (advanced metrics not available before this, and earlier seasons had higher scoring)
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Variables}
+
+\vspace{-6mm}
+\begin{table}[ht]
+\footnotesize
+\begin{tabular}{llp{5cm}}
+\hline
+& Variable & Description \\ \hline
+AvAge & Average Age & Age weighted by time on ice \\
+BLK & Blocks & Blocked shots \\
+FF\% & Fenwick for percentage & A measure of puck possession \\
+GA & Goals against & Goals allowed \\
+GF & Goals for & Goals scored \\
+PK\% & Penalty kill percentage & \% other team scores on power play \\
+PP\% & Power play percentage & \% team scores on power play \\
+PTS & Points & A measure of a teams success \\
+S & Shots & Shots on goal \\
+SA & Shots against & Shots allowed on goal \\
+SH & Short-handed goals & Goals scored on penalty kill \\
+SHA & Short-handed goals allowed & Goals allowed on power play \\
+SOS & Strength of schedule & Looks at whether team does well due to weak opponents \\
+SRS & Simple rating system & Takes into account average goal differential 
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{PTS = $\beta_{0}$ + $\beta_{1}$ GF + $\beta_{2}$ GA}
+
+\begin{figure}
+\vspace{-10mm}
+\includegraphics[width=0.6\textwidth]{report-basic_model}
+\vspace{-5mm}
+\caption{This model has $R^{2}_{Adj}$ = 0.85}
+\end{figure}
+
+\end{frame}
+
+\end{document}
