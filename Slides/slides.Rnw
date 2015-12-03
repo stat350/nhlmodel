@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \title{Predicting points in the NHL}
 \author{ Nathan Esau, Fernando Villasenor and Steve Kane}
